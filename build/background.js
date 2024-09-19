@@ -6,18 +6,18 @@
 // chrome.extension.*
 'use strict';
 
-if (chrome.extension.onConnect)
-    chrome.extension.onConnect.addListener(function (port) {
+if (chrome.runtime.onConnect)
+    chrome.runtime.onConnect.addListener(function (port) {
 
         var listener = extensionListener.bind(null, port);
         // Listens to messages sent from the panel
-        if (chrome.extension.onMessage)
-            chrome.extension.onMessage.addListener(listener);
+        if (chrome.runtime.onMessage)
+            chrome.runtime.onMessage.addListener(listener);
 
-        if (chrome.extension.onDisconnect)
+        if (chrome.runtime.onDisconnect)
             port.onDisconnect.addListener(function () {
-                if (chrome.extension.onMessage)
-                    chrome.extension.onMessage.removeListener(listener);
+                if (chrome.runtime.onMessage)
+                    chrome.runtime.onMessage.removeListener(listener);
             });
 
         // port.onMessage.addListener(function (message) {

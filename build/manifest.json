@@ -9,9 +9,7 @@
         "service_worker": "background.js"
     },
     "permissions": [
-        "tabs",
-        "http://*/*",
-        "https://*/*"
+        "tabs"
     ],
     "icons": {
         "128": "icon128.png"

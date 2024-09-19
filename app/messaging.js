@@ -14,7 +14,7 @@ function sendObjectToInspectedPage(message) {
 
 function createChannel(listener) {
     //Create a port with background page for continous message communication
-    var port = chrome.extension.connect({
+    var port = chrome.runtime.connect({
         name: 'Sample Communication' //Given a Name
     });
 
