@@ -5,21 +5,26 @@
 // chrome.tabs.*
 // chrome.extension.*
 'use strict';
-chrome.extension.onConnect.addListener(function (port) {
 
-    var listener = extensionListener.bind(null, port);
-    // Listens to messages sent from the panel
-    chrome.extension.onMessage.addListener(listener);
+if (chrome.extension.onConnect)
+    chrome.extension.onConnect.addListener(function (port) {
 
-    port.onDisconnect.addListener(function() {
-        chrome.extension.onMessage.removeListener(listener);
+        var listener = extensionListener.bind(null, port);
+        // Listens to messages sent from the panel
+        if (chrome.extension.onMessage)
+            chrome.extension.onMessage.addListener(listener);
+
+        if (chrome.extension.onDisconnect)
+            port.onDisconnect.addListener(function () {
+                if (chrome.extension.onMessage)
+                    chrome.extension.onMessage.removeListener(listener);
+            });
+
+        // port.onMessage.addListener(function (message) {
+        //     port.postMessage(message);
+        // });
+
     });
-
-    // port.onMessage.addListener(function (message) {
-    //     port.postMessage(message);
-    // });
-
-});
 
 function extensionListener(port, message, sender, sendResponse) {
 

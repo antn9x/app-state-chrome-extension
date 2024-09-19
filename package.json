@@ -2,20 +2,26 @@
   "name": "app-state-chrome-extension",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
+    "start": "parcel watch app/manifest.json --host localhost",
+    "build": "parcel build app/manifest.json --no-cache",
+    "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@parcel/config-webextension": "^2.12.0",
     "browserify": "^12.0.1",
     "jade": "^1.11.0",
-    "jsoneditor": "^5.0.1",
-    "node-sass": "^3.4.2"
+    "jsoneditor": "^5.0.1"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.12.0",
     "chalk": "^1.1.1",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "node-sass": "^9.0.0",
+    "parcel": "^2.12.0",
+    "url": "^0.11.0"
   }
 }
